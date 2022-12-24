@@ -51,8 +51,10 @@ class AuthRepository {
     Uri targetUrl = Uri.parse(Urls.signup);
 
     try {
-      var response = await http.post(targetUrl, body: registerUser);
+      print("response");
 
+      var response = await http.post(targetUrl, body: registerUser);
+      print(response);
       if (response.statusCode == 201) {
         final jsonResponse = jsonDecode(response.body);
         prefs.setString("token", jsonResponse["accessToken"]);

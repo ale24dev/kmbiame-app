@@ -14,7 +14,7 @@ class SplashController {
     //*Verificar si ya el usuario tiene un token registrado
     String? token = prefs.getString("token");
 
-    if (token != null) {
+    if (token == null) {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return const LoginScreen();
       }));
@@ -53,13 +53,12 @@ class SplashController {
     appInfo?.setTeams(teams);
   }*/
 
-    static Future<bool> Function()? exitApp() => () async {
-    if (Platform.isAndroid) {
-      SystemNavigator.pop();
-    } else if (Platform.isIOS) {
-      exit(0);
-    }
-    return false;
-  };
-
+  static Future<bool> Function()? exitApp() => () async {
+        if (Platform.isAndroid) {
+          SystemNavigator.pop();
+        } else if (Platform.isIOS) {
+          exit(0);
+        }
+        return false;
+      };
 }
