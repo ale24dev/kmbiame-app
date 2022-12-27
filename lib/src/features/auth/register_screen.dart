@@ -51,6 +51,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+        print(name.text);
+
     return Scaffold(
         body: Container(
             height: 100.h,

@@ -1,7 +1,7 @@
 class Urls {
   /// Local
-  static const String host = 'http://192.168.137.101:3000';    ///Phone Ale
-  //static const String host = 'http://192.168.137.26:8080';
+  //static const String host = 'http://192.168.137.1:3000';    ///Phone Ale
+  static const String host = 'http://172.20.10.5:3000';
 
   ///Phone Dry
 
@@ -18,7 +18,7 @@ class Urls {
   static String get getUser => '$userUrl/getUserInfo';
 
   ///Swap services
-  static const String swap = '$host/user/swap';
+  static const String swap = '$host/swap';
 
-  static String get getAllSwaps => '$swap/getAllSwaps';
+  static String get getAllSwaps => '$swap/all';
 }
