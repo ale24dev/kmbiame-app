@@ -29,5 +29,6 @@
     "settings": "Opciones",
     "signin": "Iniciar Sesión",
     "unexpectedError": "Error Inesperado",
-    "want": "Quiero"
+    "want": "Quiero",
+    "wrongLogin": "Error de Inicio de Sesión"
 }

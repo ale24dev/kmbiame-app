@@ -18,6 +18,7 @@ Future<UserBaseModel?> getUser(BuildContext context, String token) async {
     };
     Uri targetUrl = Uri.parse(Urls.getUser);
     var response = await http.get(targetUrl, headers: headers);
+    
     if (response.statusCode == 200) {
       var decodeResponse = jsonDecode(response.body);
       UserBaseModel user = UserBaseModel.fromJson(decodeResponse);

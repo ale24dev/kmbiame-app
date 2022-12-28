@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:kmbiame/src/features/layout/layout_screen.dart';
 import 'package:kmbiame/src/shared/app_info.dart';
 import 'package:kmbiame/src/shared/extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -56,7 +57,7 @@ class AuthRepository {
         final jsonResponse = jsonDecode(response.body);
         prefs.setString("token", jsonResponse["accessToken"]);
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => HomeScreen(context)));
+            .push(MaterialPageRoute(builder: (context) => LayoutScreen()));
       }
     } catch (e) {
       print(e);

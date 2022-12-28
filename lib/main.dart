@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kmbiame/src/repositories/auth_repository.dart';
 import 'package:kmbiame/src/repositories/swap_repository.dart';
+import 'package:kmbiame/src/repositories/user_repository.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -29,7 +31,13 @@ class MyApp extends StatelessWidget {
         providers: [
           RepositoryProvider<SwapRepository>(
             create: (context) => SwapRepository(),
-          )
+          ),
+          RepositoryProvider<AuthRepository>(
+            create: (context) => AuthRepository(),
+          ),
+          RepositoryProvider<UserRepository>(
+            create: (context) => UserRepository(),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

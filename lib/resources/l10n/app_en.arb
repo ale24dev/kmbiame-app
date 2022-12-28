@@ -29,5 +29,6 @@
     "settings": "Settings",
     "signin": "SignIn",
     "unexpectedError": "Unexpected Error",
-    "want": "I want"
+    "want": "I want",
+    "wrongLogin": "Login Error"
 }

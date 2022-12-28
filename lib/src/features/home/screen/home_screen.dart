@@ -51,100 +51,102 @@ class _ContestState extends LazyScreenState<HomeScreen, HomeCubit, HomeState> {
   @override
   Widget createSuccessfullyWidget(BuildContext context) {
     TextEditingController searchEditingController = TextEditingController();
-    return BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, HomeState newState) {
-      return Column(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 1.h),
-            decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(20.sp)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: TextFormField(
-                  controller: searchEditingController,
-                  style: TextStyle(color: Colors.black, fontSize: 15.sp),
-                  decoration: InputDecoration(
-                      labelText: context.loc.search,
-                      labelStyle: const TextStyle(color: Colors.black45),
-                      prefixIcon:
-                          Icon(Icons.search, color: GStyles.colorPrimary),
-                      hintStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30),
-                      focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.transparent, width: 1.0)),
-                      enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.transparent, width: 1.0))),
-                  onChanged: (text) {}),
+    return Material(
+      child: BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, HomeState newState) {
+        return Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 1.h),
+              decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(20.sp)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: TextFormField(
+                    controller: searchEditingController,
+                    style: TextStyle(color: Colors.black, fontSize: 15.sp),
+                    decoration: InputDecoration(
+                        labelText: context.loc.search,
+                        labelStyle: const TextStyle(color: Colors.black45),
+                        prefixIcon:
+                            Icon(Icons.search, color: GStyles.colorPrimary),
+                        hintStyle: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 30),
+                        focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.transparent, width: 1.0)),
+                        enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.transparent, width: 1.0))),
+                    onChanged: (text) {}),
+              ),
             ),
-          ),
-          SizedBox(
-            height: widget.categorySize,
-            child: ListView.builder(
-              itemCount: widget._listCategoryArticle.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  child: Padding(
-                    padding: EdgeInsets.all(14.sp),
-                    child: Container(
-                      height: 10.h,
-                      width: 25.w,
-                      decoration: BoxDecoration(
-                          color: newState.categoryTypeIndex == index
-                              ? GStyles.colorPrimary
-                              : GStyles.colorSecondary,
-                          borderRadius: BorderRadius.circular(10.sp)),
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(5.sp),
-                          child: Text(
-                            widget._listCategoryArticle[index],
-                            textAlign: TextAlign.center,
-                            style: newState.categoryTypeIndex == index
-                                ? context.textTheme.headline5!
-                                    .copyWith(color: Colors.white)
-                                : context.textTheme.headline5!,
+            SizedBox(
+              height: widget.categorySize,
+              child: ListView.builder(
+                itemCount: widget._listCategoryArticle.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    child: Padding(
+                      padding: EdgeInsets.all(14.sp),
+                      child: Container(
+                        height: 10.h,
+                        width: 25.w,
+                        decoration: BoxDecoration(
+                            color: newState.categoryTypeIndex == index
+                                ? GStyles.colorPrimary
+                                : GStyles.colorSecondary,
+                            borderRadius: BorderRadius.circular(10.sp)),
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(5.sp),
+                            child: Text(
+                              widget._listCategoryArticle[index],
+                              textAlign: TextAlign.center,
+                              style: newState.categoryTypeIndex == index
+                                  ? context.textTheme.headline5!
+                                      .copyWith(color: Colors.white)
+                                  : context.textTheme.headline5!,
+                            ),
                           ),
                         ),
                       ),
                     ),
+                    onTap: () {
+                      context.read<HomeCubit>().changeCategory(index);
+                    },
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    context.loc.give,
+                    style: context.textTheme.headlineMedium!
+                        .copyWith(color: GStyles.colorSecondary),
                   ),
-                  onTap: () {
-                    context.read<HomeCubit>().changeCategory(index);
-                  },
-                );
-              },
+                  Text(
+                    context.loc.want,
+                    style: context.textTheme.headlineMedium!
+                        .copyWith(color: GStyles.colorPrimary),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  context.loc.give,
-                  style: context.textTheme.headlineMedium!
-                      .copyWith(color: GStyles.colorSecondary),
-                ),
-                Text(
-                  context.loc.want,
-                  style: context.textTheme.headlineMedium!
-                      .copyWith(color: GStyles.colorPrimary),
-                ),
-              ],
-            ),
-          ),
-          newState.listSwaps!.isNotEmpty
-              ? CardSwap(listSwaps: newState.listSwaps!)
-              : Expanded(child: Center(child: Text(context.loc.emptySwaps, style: context.textTheme.headline5,))),
-        ],
-      );
-    });
+            newState.listSwaps!.isNotEmpty
+                ? CardSwap(listSwaps: newState.listSwaps!)
+                : Expanded(child: Center(child: Text(context.loc.emptySwaps, style: context.textTheme.headline5,))),
+          ],
+        );
+      }),
+    );
   }
 }

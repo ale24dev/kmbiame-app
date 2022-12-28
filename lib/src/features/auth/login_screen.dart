@@ -113,8 +113,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         message: context.loc.emptyFields,
                                         title: context.loc.error));
                               }
-                              print(name.text);
-                              print(password.text);
                               AuthRepository authRepository = AuthRepository();
                               await authRepository.logIn(context, username: name.text, password: password.text);
                             },

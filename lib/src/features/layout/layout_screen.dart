@@ -21,37 +21,35 @@ class LayoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NavigationCubit(),
-      child: Material(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          drawer: DrawerScreen(),
-          appBar: appBarBuilder(context),
-          body: BlocBuilder<NavigationCubit, NavigationState>(
-              builder: (context, state) {
-            switch (state.navbarItem) {
-              case NavbarItem.home:
-                return HomeScreen(context);
-              case NavbarItem.favs:
-                return Center(
-                  child: Text(
-                    "Favs",
-                    style: context.textTheme.headline1!
-                        .copyWith(color: GStyles.colorPrimary),
-                  ),
-                );
-              case NavbarItem.settings:
-                // return Center(child: Text(context.loc.contest, style: context.textTheme.headline1!.copyWith(color: GStyles.colorPrimary1),),);
-                return Center(
-                  child: Text(
-                    "Settings",
-                    style: context.textTheme.headline1!
-                        .copyWith(color: GStyles.colorPrimary),
-                  ),
-                );
-            }
-          }),
-          bottomNavigationBar: bottomNavigationBarBuilder(context),
-        ),
+      child: Scaffold(
+         backgroundColor: Colors.white,
+      drawer: DrawerScreen(),
+      appBar: appBarBuilder(context),
+        body: BlocBuilder<NavigationCubit, NavigationState>(
+            builder: (context, state) {
+          switch (state.navbarItem) {
+            case NavbarItem.home:
+              return HomeScreen(context);
+            case NavbarItem.favs:
+              return Center(
+                child: Text(
+                  "Favs",
+                  style: context.textTheme.headline1!
+                      .copyWith(color: GStyles.colorPrimary),
+                ),
+              );
+            case NavbarItem.settings:
+              // return Center(child: Text(context.loc.contest, style: context.textTheme.headline1!.copyWith(color: GStyles.colorPrimary1),),);
+              return Center(
+                child: Text(
+                  "Settings",
+                  style: context.textTheme.headline1!
+                      .copyWith(color: GStyles.colorPrimary),
+                ),
+              );
+          }
+        }),
+        bottomNavigationBar: bottomNavigationBarBuilder(context),
       ),
     );
   }

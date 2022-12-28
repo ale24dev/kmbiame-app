@@ -15,7 +15,7 @@ class Urls {
   ///User services
   static const String userUrl = '$host/user';
 
-  static String get getUser => '$userUrl/getUserInfo';
+  static String get getUser => '$userUrl/info';
 
   ///Swap services
   static const String swap = '$host/swap';
