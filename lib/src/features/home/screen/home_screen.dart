@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kmbiame/resources/general_styles.dart';
 import 'package:kmbiame/src/features/home/screen/widgets/card_swap.dart';
+import 'package:kmbiame/src/repositories/swap_repository.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:kmbiame/src/shared/extensions.dart';
@@ -41,7 +42,11 @@ class HomeScreen extends BaseStatefulWidget {
 /// Manejador del estado de la vista ContestScreen.
 class _ContestState extends LazyScreenState<HomeScreen, HomeCubit, HomeState> {
   _ContestState(BuildContext context)
-      : super(HomeCubit(context), context.loc.loading);
+      : super(
+            HomeCubit(
+                context: context,
+                swapRepository: context.read<SwapRepository>()),
+            context.loc.loading);
 
   @override
   Widget createSuccessfullyWidget(BuildContext context) {
@@ -91,7 +96,9 @@ class _ContestState extends LazyScreenState<HomeScreen, HomeCubit, HomeState> {
                       height: 10.h,
                       width: 25.w,
                       decoration: BoxDecoration(
-                          color: newState.categoryTypeIndex == index ? GStyles.colorPrimary: GStyles.colorSecondary,
+                          color: newState.categoryTypeIndex == index
+                              ? GStyles.colorPrimary
+                              : GStyles.colorSecondary,
                           borderRadius: BorderRadius.circular(10.sp)),
                       child: Center(
                         child: Padding(
@@ -133,7 +140,9 @@ class _ContestState extends LazyScreenState<HomeScreen, HomeCubit, HomeState> {
               ],
             ),
           ),
-          CardSwap(listSwaps: newState.listSwaps!),
+          newState.listSwaps!.isNotEmpty
+              ? CardSwap(listSwaps: newState.listSwaps!)
+              : Expanded(child: Center(child: Text(context.loc.emptySwaps, style: context.textTheme.headline5,))),
         ],
       );
     });

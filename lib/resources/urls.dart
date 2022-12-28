@@ -21,4 +21,5 @@ class Urls {
   static const String swap = '$host/swap';
 
   static String get getAllSwaps => '$swap/all';
+  static String get getSwapsByCategoryArticle => '$swap/byCategoryArticle';
 }

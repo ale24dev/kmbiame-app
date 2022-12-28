@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kmbiame/src/shared/constants/article_type.dart';
 
 class UtilsFunction {
   static String getDateByPosition(BuildContext context, int pos) {
@@ -30,6 +31,23 @@ class UtilsFunction {
     }
   }
 
+  static String getStringCategoryByEnum(ArticleType articleType) {
+    switch (articleType) {
+      case ArticleType.all:
+        return "all";
+      case ArticleType.food:
+        return "food";
+      case ArticleType.electronic:
+        return "electronic";
+      case ArticleType.money:
+        return "money";
+      case ArticleType.cloth:
+        return "cloth";
+      default:
+        return "others";
+    }
+  }
+
   static getRawDateByDate(BuildContext context, DateTime date) {
     final lc = getLanguage(context);
     if (lc == "es") {
@@ -41,5 +59,16 @@ class UtilsFunction {
   static String getLanguage(BuildContext context) {
     Locale myLocale = Localizations.localeOf(context);
     return myLocale.toLanguageTag();
+  }
+
+  ///Esta función crea una url para una petición GET, a partir de una url base y un
+  ///diccionario de parámetros.
+  static String createGetUrl(
+      {required String baseUrl, required Map<String, dynamic> params}) {
+    String url = '$baseUrl?${params.keys.first}=${params.values.first}';
+    for (int i = 1; i < params.length; i++) {
+      url += '&${params.keys.elementAt(i)}=${params.values.elementAt(i)}';
+    }
+    return url;
   }
 }

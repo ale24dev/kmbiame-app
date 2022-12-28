@@ -4,6 +4,7 @@ class HomeState extends BaseState {
   List<SwapLogicalModel>? listSwaps;
   ArticleType articleType;
   int categoryTypeIndex;
+  
   HomeState({
     this.listSwaps,
     this.articleType = ArticleType.all,
@@ -27,4 +28,6 @@ class HomeState extends BaseState {
           hasInitializationError: stateToCopy.hasInitializationError,
           initializationErrorMessage: stateToCopy.initializationErrorMessage,
         );
+
+        
 }

@@ -32,9 +32,10 @@ Map<String, dynamic> _$$_ArticleBaseModelToJson(_$_ArticleBaseModel instance) =>
     };
 
 const _$ArticleTypeEnumMap = {
+  ArticleType.all: 'all',
   ArticleType.food: 'food',
   ArticleType.electronic: 'electronic',
-  ArticleType.cloth: 'cloth',
   ArticleType.money: 'money',
+  ArticleType.cloth: 'cloth',
   ArticleType.others: 'others',
 };
