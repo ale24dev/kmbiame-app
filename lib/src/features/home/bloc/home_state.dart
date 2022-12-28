@@ -2,8 +2,12 @@ part of 'home_cubit.dart';
 
 class HomeState extends BaseState {
   List<SwapLogicalModel>? listSwaps;
+  ArticleType articleType;
+  int categoryTypeIndex;
   HomeState({
     this.listSwaps,
+    this.articleType = ArticleType.all,
+    this.categoryTypeIndex = 0,
     BaseCubitStatus status = BaseCubitStatus.LOADING,
     bool isClosed = false,
     bool hasInitializationError = false,

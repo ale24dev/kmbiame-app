@@ -1,1 +1,1 @@
-enum ArticleType { food, electronic, cloth, money, others }
+enum ArticleType { all, food, electronic, money, cloth, others }

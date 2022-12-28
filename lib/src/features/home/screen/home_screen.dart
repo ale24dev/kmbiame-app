@@ -14,13 +14,28 @@ import '../../../shared/widgets/base_stateful_widget.dart';
 class HomeScreen extends BaseStatefulWidget {
   final double _homeAppBarSize = 50;
 
+  final double _categorySize = 60;
+
+  late List<String> _listCategoryArticle;
+
   /// Constructor de la clase.
-  HomeScreen(BuildContext context) : super(context);
+  HomeScreen(BuildContext context) : super(context) {
+    _listCategoryArticle = [
+      context.loc.all,
+      context.loc.food,
+      context.loc.electronic,
+      context.loc.money,
+      context.loc.cloth,
+      context.loc.others
+    ];
+  }
 
   @override
   State<StatefulWidget> createState() => _ContestState(context);
 
   double get homeAppBarSize => _homeAppBarSize;
+
+  double get categorySize => _categorySize;
 }
 
 /// Manejador del estado de la vista ContestScreen.
@@ -47,7 +62,7 @@ class _ContestState extends LazyScreenState<HomeScreen, HomeCubit, HomeState> {
                   style: TextStyle(color: Colors.black, fontSize: 15.sp),
                   decoration: InputDecoration(
                       labelText: context.loc.search,
-                      labelStyle: const TextStyle(color: Colors.black),
+                      labelStyle: const TextStyle(color: Colors.black45),
                       prefixIcon:
                           Icon(Icons.search, color: GStyles.colorPrimary),
                       hintStyle: const TextStyle(
@@ -61,6 +76,43 @@ class _ContestState extends LazyScreenState<HomeScreen, HomeCubit, HomeState> {
                           borderSide: BorderSide(
                               color: Colors.transparent, width: 1.0))),
                   onChanged: (text) {}),
+            ),
+          ),
+          SizedBox(
+            height: widget.categorySize,
+            child: ListView.builder(
+              itemCount: widget._listCategoryArticle.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  child: Padding(
+                    padding: EdgeInsets.all(14.sp),
+                    child: Container(
+                      height: 10.h,
+                      width: 25.w,
+                      decoration: BoxDecoration(
+                          color: newState.categoryTypeIndex == index ? GStyles.colorPrimary: GStyles.colorSecondary,
+                          borderRadius: BorderRadius.circular(10.sp)),
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(5.sp),
+                          child: Text(
+                            widget._listCategoryArticle[index],
+                            textAlign: TextAlign.center,
+                            style: newState.categoryTypeIndex == index
+                                ? context.textTheme.headline5!
+                                    .copyWith(color: Colors.white)
+                                : context.textTheme.headline5!,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    context.read<HomeCubit>().changeCategory(index);
+                  },
+                );
+              },
             ),
           ),
           Padding(
