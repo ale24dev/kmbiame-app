@@ -12,6 +12,7 @@ import 'package:kmbiame/src/shared/widgets/generic_text_field.dart';
 import '../../shared/widgets/helper_auth.dart';
 import '../../shared/widgets/text_logo_app.dart';
 import '../../shared/widgets/text_with_border.dart';
+import '../layout/layout_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -138,6 +139,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               }
                               await authRepository.register(context, name.text,
                                   password.text, phone.text);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => LayoutScreen()));
                             },
                           )
                         ]),

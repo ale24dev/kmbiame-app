@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmbiame/src/features/layout/layout_screen.dart';
 import 'package:kmbiame/src/repositories/auth_repository.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -105,8 +106,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 fontFamily: GStyles.fontOkine)),
                                   )),
                             ),
-                            onTap: () async{
-                              if(name.text.isEmpty || password.text.isEmpty) {
+                            onTap: () async {
+                              if (name.text.isEmpty || password.text.isEmpty) {
                                 showDialog(
                                     context: context,
                                     builder: (context) => GenericAlertDialog(
@@ -114,7 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         title: context.loc.error));
                               }
                               AuthRepository authRepository = AuthRepository();
-                              await authRepository.logIn(context, username: name.text, password: password.text);
+                              await authRepository.logIn(context,
+                                  username: name.text, password: password.text);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const LayoutScreen()));
                             },
                           )
                         ]),

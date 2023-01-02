@@ -17,6 +17,7 @@
     "haveAccount": "¿Ya tiene una cuenta?",
     "home": "Inicio",
     "loading": "Cargando",
+    "logout": "Cerrar Sesión",
     "money": "Dinero",
     "name": "Nombre",
     "others": "Otros",
@@ -29,6 +30,7 @@
     "settings": "Opciones",
     "signin": "Iniciar Sesión",
     "unexpectedError": "Error Inesperado",
+    "user": "Usuario",
     "want": "Quiero",
     "wrongLogin": "Error de Inicio de Sesión"
 }

@@ -17,6 +17,7 @@
     "haveAccount": "Already have an account?",
     "home": "Home",
     "loading": "Loading",
+    "logout": "Logout",
     "money": "Money",
     "name": "Name",
     "others": "Others",
@@ -29,6 +30,7 @@
     "settings": "Settings",
     "signin": "SignIn",
     "unexpectedError": "Unexpected Error",
+    "user": "User",
     "want": "I want",
     "wrongLogin": "Login Error"
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kmbiame/src/features/auth/register_screen.dart';
 import 'package:kmbiame/src/models/user_base_model.dart';
 import 'package:kmbiame/src/repositories/auth_repository.dart';
 import 'package:kmbiame/src/shared/app_info.dart';
 import 'package:kmbiame/src/shared/extensions.dart';
 
+import '../../../shared/utils/utils.dart';
 import '../../../shared/widgets/error_dialog.dart';
 import 'drawer_state.dart';
 
@@ -26,11 +28,11 @@ class DrawerCubit extends Cubit<DrawerState> {
 
   Future<void> logOut(BuildContext context) async {
     try {
-      AuthRepository authRepository = AuthRepository();
+      //AuthRepository authRepository = AuthRepository();
       //await authRepository.logOut(context);
       //Utils.showToast(context.loc.logout);
-      //Utils.logOut(context);
-      Navigator.of(context).pop();
+      Utils.logOut(context);
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const RegisterScreen()), (route) => false);
     } catch (e) {
       Navigator.of(context).pop();
       showDialog(

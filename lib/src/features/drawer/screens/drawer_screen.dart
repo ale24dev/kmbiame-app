@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kmbiame/resources/icons.dart';
 import 'package:kmbiame/src/features/auth/register_screen.dart';
 import 'package:kmbiame/src/repositories/auth_repository.dart';
 import 'package:kmbiame/src/shared/extensions.dart';
@@ -53,22 +54,19 @@ class DrawerScreen extends StatelessWidget {
                         },
                         child: Row(
                           children: [
-                            const Text("UserImage"),
-                            //state.status == DrawerStatus.authenticated
-                            //  ? userImage(state)
-                            //   : Text("UserImage"),
+                            /*const Text("UserImage"),
+                            state.status == DrawerStatus.authenticated
+                              ? userImage(state)
+                               : Text("UserImage"),
                             const SizedBox(
                               width: 15,
-                            ),
+                            ),*/
                             Expanded(
                                 child: FittedBox(
                               alignment: Alignment.centerLeft,
                               fit: BoxFit.scaleDown,
                               child: Text(
-                                "ale",
-                                // state.status == DrawerStatus.authenticated
-                                //      ? state.user!.username
-                                //      : "context.loc.auth",
+                                state.user?.username.toString() ?? context.loc.user,
                                 style: context.textTheme.headline4!
                                     .copyWith(color: Colors.white),
                                 maxLines: 1,
@@ -92,8 +90,9 @@ class DrawerScreen extends StatelessWidget {
                             return StatsScreen(context);
                           }));*/
                         },
-                        icon: "home",
-                        textTitle: "home",
+                        icon: KmbiameIcons.home,
+                        color: GStyles.colorPrimary,
+                        textTitle: context.loc.home,
                       ),
                     ],
                   ),
@@ -109,14 +108,14 @@ class DrawerScreen extends StatelessWidget {
                         },
                         child: ListTile(
                           leading: Icon(
-                            Icons.logout,
+                            Icons.exit_to_app,
                             color: GStyles.colorPrimary,
                             size: 34,
                           ),
                           title: Text(
-                            "logout",
-                            style: context.textTheme.headline5!
-                                .copyWith(color: Colors.black, fontSize: 18.sp),
+                            context.loc.logout,
+                            style: context.textTheme.headline5!.copyWith(
+                                color: GStyles.colorPrimary, fontSize: 18.sp),
                           ),
                         ),
                       ),
